@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProcessCompletedView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         VStack {
             Text("Process Completed")
@@ -15,6 +17,7 @@ struct ProcessCompletedView: View {
                 .padding()
             
             Button("Start Over") {
+                presentationMode.wrappedValue.dismiss()
             }
             .font(.system(size: 20))
         }
