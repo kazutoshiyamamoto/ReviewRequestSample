@@ -29,10 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
-        
-        if let windowScene = UIApplication.shared.windows.first?.windowScene {
-            SKStoreReviewController.requestReview(in: windowScene)
-        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
