@@ -15,6 +15,7 @@ struct InitialView: View {
                 Text("Start Process")
                     .font(.system(size: 24))
             }
+            .navigationTitle("Initial View")
         }
     }
 }
