@@ -12,6 +12,7 @@ struct ProcessCompletedView: View {
             Text("Process Completed")
                 .font(.system(size: 24))
                 .padding()
+        .navigationTitle("Completed View")
     }
 }
 
