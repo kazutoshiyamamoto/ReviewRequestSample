@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -22,6 +23,12 @@ struct ProcessCompletedView: View {
             .font(.system(size: 20))
         }
         .navigationTitle("Completed View")
+        .onAppear(perform: {
+            // レビュー依頼画面を表示
+            if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
+            }
+        })
     }
 }
 
