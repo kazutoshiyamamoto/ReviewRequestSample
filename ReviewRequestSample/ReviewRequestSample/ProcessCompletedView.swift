@@ -9,9 +9,13 @@ import SwiftUI
 
 struct ProcessCompletedView: View {
     var body: some View {
+        VStack {
             Text("Process Completed")
                 .font(.system(size: 24))
                 .padding()
+            Button("Start Over") {
+            }
+        }
         .navigationTitle("Completed View")
     }
 }
