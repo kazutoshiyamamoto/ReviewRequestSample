@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct InitialView: View {
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+                Text("Start Process")
+                    .font(.system(size: 24))
     }
 }
 
