@@ -19,16 +19,17 @@ struct ProcessCompletedView: View {
             
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
+                
+                // レビュー依頼画面を表示
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                    if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                        SKStoreReviewController.requestReview(in: windowScene)
+                    }
+                }
             }
             .font(.system(size: 20))
         }
         .navigationTitle("Completed View")
-        .onAppear(perform: {
-            // レビュー依頼画面を表示
-            if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                SKStoreReviewController.requestReview(in: windowScene)
-            }
-        })
     }
 }
 
