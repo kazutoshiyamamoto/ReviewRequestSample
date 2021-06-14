@@ -10,8 +10,12 @@ import SwiftUI
 struct InitialView: View {
     
     var body: some View {
+        NavigationView {
+            NavigationLink(destination: ProcessCompletedView()) {
                 Text("Start Process")
                     .font(.system(size: 24))
+            }
+        }
     }
 }
 
