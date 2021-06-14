@@ -10,6 +10,8 @@ import SwiftUI
 struct ProcessCompletedView: View {
     var body: some View {
             Text("Process Completed")
+                .font(.system(size: 24))
+                .padding()
     }
 }
 
