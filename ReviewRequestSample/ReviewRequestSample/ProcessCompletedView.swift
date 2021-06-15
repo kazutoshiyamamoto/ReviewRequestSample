@@ -11,6 +11,7 @@ import StoreKit
 struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
     
+    @State var selectedRating: Int = 0
     var body: some View {
         VStack {
             Text("Process Completed")
