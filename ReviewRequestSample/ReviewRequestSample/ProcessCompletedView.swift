@@ -11,7 +11,7 @@ import StoreKit
 struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var selectedRating: Int = 0
+    @State private var selectedRating: Int = 0
     private var maximumRating = 5
     
     var body: some View {
