@@ -35,10 +35,12 @@ struct ProcessCompletedView: View {
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
                 
-                // レビュー依頼画面を表示
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                    if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                        SKStoreReviewController.requestReview(in: windowScene)
+                // 高評価の場合はレビュー依頼画面を表示
+                if selectedRating > 3 {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                            SKStoreReviewController.requestReview(in: windowScene)
+                        }
                     }
                 }
             }
