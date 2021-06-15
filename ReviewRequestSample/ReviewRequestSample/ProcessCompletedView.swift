@@ -20,6 +20,17 @@ struct ProcessCompletedView: View {
                 .font(.system(size: 24))
                 .padding()
             
+            HStack {
+                ForEach(1 ..< maximumRating + 1) { ratingNumber in
+                    Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
+                        .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
+                        .onTapGesture {
+                            selectedRating = ratingNumber
+                        }
+                }
+            }
+            .padding()
+            
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
                 
