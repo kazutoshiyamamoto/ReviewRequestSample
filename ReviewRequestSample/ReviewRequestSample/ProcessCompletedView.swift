@@ -12,6 +12,8 @@ struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var selectedRating: Int = 0
+    private var maximumRating = 5
+    
     var body: some View {
         VStack {
             Text("Process Completed")
