@@ -16,11 +16,15 @@ struct ProcessCompletedView: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            
             Text("Process Completed")
                 .font(.system(size: 24))
                 .padding()
             
             HStack {
+            Spacer()
+
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
                     Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
                         .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
@@ -45,6 +49,8 @@ struct ProcessCompletedView: View {
                 }
             }
             .font(.system(size: 20))
+            
+            Spacer()
         }
         .navigationTitle("Completed View")
     }
