@@ -33,8 +33,6 @@ struct ProcessCompletedView: View {
                         }
                 }
             }
-            .font(.system(size: 24))
-            .padding()
             
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
