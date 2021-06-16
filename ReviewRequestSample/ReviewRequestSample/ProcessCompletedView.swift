@@ -43,6 +43,9 @@ struct ProcessCompletedView: View {
                 }
             }
             
+            
+            Spacer()
+            
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
                 
