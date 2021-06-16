@@ -28,12 +28,18 @@ struct ProcessCompletedView: View {
 
             HStack(spacing: 30) {
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
+                    VStack {
                         Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
                             .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
                             .onTapGesture {
                                 selectedRating = ratingNumber
                             }
                             .font(.system(size: 24))
+                            .padding([.bottom], 2)
+                        
+                        Text(labels[ratingNumber])
+                            .font(.system(size: 14))
+                    }
                 }
             }
             
