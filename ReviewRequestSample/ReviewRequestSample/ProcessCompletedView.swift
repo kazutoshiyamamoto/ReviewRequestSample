@@ -26,11 +26,12 @@ struct ProcessCompletedView: View {
             Spacer()
 
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
-                    Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
-                        .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
-                        .onTapGesture {
-                            selectedRating = ratingNumber
-                        }
+                        Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
+                            .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
+                            .onTapGesture {
+                                selectedRating = ratingNumber
+                            }
+                            .font(.system(size: 24))
                 }
             }
             
