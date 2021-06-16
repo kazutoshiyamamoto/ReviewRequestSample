@@ -22,9 +22,9 @@ struct ProcessCompletedView: View {
                 .font(.system(size: 24))
                 .padding()
             
-            HStack {
             Spacer()
 
+            HStack(spacing: 30) {
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
                         Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
                             .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
