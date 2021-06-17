@@ -14,8 +14,6 @@ struct ProcessCompletedView: View {
     @State private var selectedRating: Int = 0
     private var maximumRating = 5
     
-    private var labels = ["", "不満", "・", "・", "・", "満足"]
-    
     var body: some View {
         VStack {
             Spacer()
@@ -34,9 +32,6 @@ struct ProcessCompletedView: View {
                             }
                             .font(.system(size: 24))
                             .padding([.bottom], 2)
-                        
-                        Text(labels[ratingNumber])
-                            .font(.system(size: 14))
                     }
                 }
             }
