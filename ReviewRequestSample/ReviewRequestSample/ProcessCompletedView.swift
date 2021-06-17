@@ -24,8 +24,6 @@ struct ProcessCompletedView: View {
                 .font(.system(size: 24))
                 .padding()
             
-            Spacer()
-
             HStack(spacing: 30) {
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
                     VStack {
@@ -43,8 +41,6 @@ struct ProcessCompletedView: View {
                 }
             }
             
-            
-            Spacer()
             
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
