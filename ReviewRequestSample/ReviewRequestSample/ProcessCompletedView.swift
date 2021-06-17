@@ -41,6 +41,10 @@ struct ProcessCompletedView: View {
                 }
             }
             
+            Button("Link") {
+            }
+            .font(.system(size: 20))
+            .padding()
             
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
