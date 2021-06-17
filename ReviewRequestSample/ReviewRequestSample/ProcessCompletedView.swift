@@ -42,6 +42,8 @@ struct ProcessCompletedView: View {
             }
             
             Button("Link") {
+                UIApplication.shared.open(URL(string: "https://qiita.com/")!)
+                
             }
             .font(.system(size: 20))
             .padding()
