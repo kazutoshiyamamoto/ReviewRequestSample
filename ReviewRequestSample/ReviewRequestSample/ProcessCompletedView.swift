@@ -24,17 +24,16 @@ struct ProcessCompletedView: View {
             
             HStack(spacing: 30) {
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
-                    VStack {
-                        Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
-                            .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
-                            .onTapGesture {
-                                selectedRating = ratingNumber
-                            }
-                            .padding([.bottom], 2)
-                    }
+                    Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
+                        .foregroundColor(ratingNumber > selectedRating ? Color.gray : Color.blue)
+                        .onTapGesture {
+                            selectedRating = ratingNumber
+                        }
                         .font(.title)
                 }
             }
+            .padding([.bottom], 2)
+            
             
             Button("Link") {
                 UIApplication.shared.open(URL(string: "https://qiita.com/")!)
