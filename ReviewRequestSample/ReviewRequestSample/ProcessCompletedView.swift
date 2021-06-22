@@ -30,9 +30,9 @@ struct ProcessCompletedView: View {
                             .onTapGesture {
                                 selectedRating = ratingNumber
                             }
-                            .font(.system(size: 24))
                             .padding([.bottom], 2)
                     }
+                        .font(.title)
                 }
             }
             
@@ -48,7 +48,7 @@ struct ProcessCompletedView: View {
                     }
                 }
             }
-            .font(.system(size: 20))
+            .font(.title3)
             .padding()
             
             Button("Start Over") {
@@ -63,7 +63,7 @@ struct ProcessCompletedView: View {
                     }
                 }
             }
-            .font(.system(size: 20))
+            .font(.title3)
             
             Spacer()
         }
