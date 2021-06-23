@@ -34,6 +34,14 @@ struct ProcessCompletedView: View {
             }
             .padding([.bottom], 2)
             
+            HStack(spacing: 30) {
+                Text("不満")
+                
+                Spacer()
+                
+                Text("満足")
+            }
+            .frame(width: 300)
             
             Button("Link") {
                 UIApplication.shared.open(URL(string: "https://qiita.com/")!)
