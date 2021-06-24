@@ -74,6 +74,12 @@ struct ProcessCompletedView: View {
             
             Spacer()
         }
+        .onAppear(perform: {
+            var count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
+            count += 1
+            UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
+            print("Process completed \(count) time(s)")
+        })
     }
 }
 
