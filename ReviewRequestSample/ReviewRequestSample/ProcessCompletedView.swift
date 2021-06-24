@@ -19,7 +19,7 @@ struct ProcessCompletedView: View {
             Spacer()
             
             Text("Process Completed")
-                .font(.system(size: 24))
+                .font(.system(size: 30))
                 .padding()
             
             HStack(spacing: 30) {
@@ -70,7 +70,7 @@ struct ProcessCompletedView: View {
 //                    }
 //                }
             }
-            .font(.title3)
+            .font(.system(size: 18))
             
             Spacer()
         }

@@ -13,7 +13,7 @@ struct InitialView: View {
         NavigationView {
             NavigationLink(destination: ProcessCompletedView()) {
                 Text("Start Process")
-                    .font(.system(size: 24))
+                        .font(.system(size: 30))
             }
         }
     }
