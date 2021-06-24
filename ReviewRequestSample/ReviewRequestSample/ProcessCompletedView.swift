@@ -74,7 +74,6 @@ struct ProcessCompletedView: View {
             
             Spacer()
         }
-        .navigationTitle("Completed View")
     }
 }
 
