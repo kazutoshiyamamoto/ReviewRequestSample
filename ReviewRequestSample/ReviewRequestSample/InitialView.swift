@@ -28,6 +28,12 @@ struct InitialView: View {
                         .padding()
                 }
                 
+                Button("Reset Sample") {
+                    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.processCompletedCountKey)
+                    print("Count have been reset")
+                }
+                .font(.system(size: 18))
+                .padding([.bottom], 40)
             }
             .onAppear(perform: {
                 let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
