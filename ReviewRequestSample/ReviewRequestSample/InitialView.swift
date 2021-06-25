@@ -12,9 +12,22 @@ struct InitialView: View {
     
     var body: some View {
         NavigationView {
-            NavigationLink(destination: ProcessCompletedView()) {
-                Text("Start Process")
+            VStack {
+                Spacer()
+                
+                NavigationLink(destination: ProcessCompletedView()) {
+                    Text("Start Process")
                         .font(.system(size: 30))
+                }
+                
+                Spacer()
+                
+                if let writeReviewURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
+                    Link("Write a Review", destination: writeReviewURL)
+                        .font(.system(size: 18))
+                        .padding()
+                }
+                
             }
             .onAppear(perform: {
                 let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
