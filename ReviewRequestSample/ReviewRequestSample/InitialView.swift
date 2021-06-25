@@ -18,7 +18,7 @@ struct InitialView: View {
             }
             .onAppear(perform: {
                 let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
-                if count >= 3 {
+                if count >= 2 {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         if let windowScene = UIApplication.shared.windows.first?.windowScene {
                             SKStoreReviewController.requestReview(in: windowScene)
