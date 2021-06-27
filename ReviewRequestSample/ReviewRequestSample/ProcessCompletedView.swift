@@ -41,7 +41,7 @@ struct ProcessCompletedView: View {
                 Text("満足")
             }
             .frame(width: 300)
-            
+            .padding([.bottom], 20)
             
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
