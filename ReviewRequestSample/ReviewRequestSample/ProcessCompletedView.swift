@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import StoreKit
 
 struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -43,32 +42,9 @@ struct ProcessCompletedView: View {
             }
             .frame(width: 300)
             
-            Button("Link") {
-                UIApplication.shared.open(URL(string: "https://qiita.com/")!)
-                
-                // 高評価の場合はレビュー依頼画面を表示
-                if selectedRating > 3 {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                        if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                            SKStoreReviewController.requestReview(in: windowScene)
-                        }
-                    }
-                }
-            }
-            .font(.title3)
-            .padding()
             
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
-                
-//                // 高評価の場合はレビュー依頼画面を表示
-//                if selectedRating > 3 {
-//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-//                        if let windowScene = UIApplication.shared.windows.first?.windowScene {
-//                            SKStoreReviewController.requestReview(in: windowScene)
-//                        }
-//                    }
-//                }
             }
             .font(.system(size: 18))
             
