@@ -43,6 +43,12 @@ struct ProcessCompletedView: View {
             .frame(width: 300)
             .padding([.bottom], 20)
             
+            if let linkURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
+                Link("Link", destination: linkURL)
+                    .font(.system(size: 18))
+                    .padding([.bottom], 20)
+            }
+            
             Button("Start Over") {
                 presentationMode.wrappedValue.dismiss()
             }
