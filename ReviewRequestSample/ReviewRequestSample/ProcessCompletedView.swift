@@ -62,6 +62,9 @@ struct ProcessCompletedView: View {
             UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
             print("Process completed \(count) time(s)")
         })
+    
+    private func logSend() {
+        print("評価送信:\(String(describing: selectedRating != 0 ? selectedRating : nil))")
     }
 }
 
