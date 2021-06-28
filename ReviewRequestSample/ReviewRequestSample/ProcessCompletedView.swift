@@ -63,6 +63,13 @@ struct ProcessCompletedView: View {
             UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
             print("Process completed \(count) time(s)")
         })
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("sceneDidEnterBackground"))) { _ in
+            print("sceneDidEnterBackground")
+            if isLogSended == false {
+                logSend()
+                isLogSended = true
+            }
+        }
         .onDisappear(perform: {
             print("onDisappear")
             if isLogSended == false {
