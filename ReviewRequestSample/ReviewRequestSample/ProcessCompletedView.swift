@@ -11,6 +11,7 @@ struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var selectedRating: Int = 0
+    @State private var isLogSended = false
     private var maximumRating = 5
     
     var body: some View {
@@ -62,6 +63,14 @@ struct ProcessCompletedView: View {
             UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
             print("Process completed \(count) time(s)")
         })
+        .onDisappear(perform: {
+            print("onDisappear")
+            if isLogSended == false {
+                logSend()
+                isLogSended = true
+            }
+        })
+    }
     
     private func logSend() {
         print("評価送信:\(String(describing: selectedRating != 0 ? selectedRating : nil))")
