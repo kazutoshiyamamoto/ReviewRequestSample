@@ -32,7 +32,7 @@ struct ProcessCompletedView: View {
                         .font(.title)
                 }
             }
-            .padding([.bottom], 2)
+            .padding(.bottom, 2)
             
             HStack(spacing: 30) {
                 Text("不満")
@@ -42,12 +42,12 @@ struct ProcessCompletedView: View {
                 Text("満足")
             }
             .frame(width: 300)
-            .padding([.bottom], 20)
+            .padding(.bottom, 20)
             
             if let linkURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
                 Link("Link", destination: linkURL)
                     .font(.system(size: 18))
-                    .padding([.bottom], 20)
+                    .padding(.bottom, 20)
             }
             
             Button("Start Over") {

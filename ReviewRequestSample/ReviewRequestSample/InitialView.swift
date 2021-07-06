@@ -33,7 +33,7 @@ struct InitialView: View {
                     print("Count have been reset")
                 }
                 .font(.system(size: 18))
-                .padding([.bottom], 40)
+                .padding(.bottom, 40)
             }
             .onAppear(perform: {
                 let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
