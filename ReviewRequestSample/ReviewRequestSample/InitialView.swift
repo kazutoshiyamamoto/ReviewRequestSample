@@ -29,14 +29,14 @@ struct InitialView: View {
                 }
                 
                 Button("Reset Sample") {
-                    UserDefaults.standard.set(0, forKey: UserDefaultsKeys.processCompletedCountKey)
+                    UserDefaults.standard.set(0, forKey: StoreReviewHelper.UserDefaultsKeys.processCompletedCount)
                     print("Count have been reset")
                 }
                 .font(.system(size: 18))
                 .padding(.bottom, 40)
             }
             .onAppear(perform: {
-                let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
+                let count = UserDefaults.standard.integer(forKey: StoreReviewHelper.UserDefaultsKeys.processCompletedCount)
                 if count >= 2 {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         if let windowScene = UIApplication.shared.windows.first?.windowScene {
