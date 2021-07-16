@@ -52,4 +52,16 @@ struct StoreReviewHelper {
         print("完了画面を表示した回数\(processCompletedCount)回")
     }
     
+    // レビュー依頼候補から外す
+    static func removeFromCandidate() {
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isReviewRequestCandidate)
+        
+        // レビュー依頼画面表示の判定に使用していた値を破棄
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.appOpenCount)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.processCompletedCount)
+        
+        print("レビュー依頼候補から外した")
+        print("起動回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)))回")
+        print("完了画面を表示した回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)))回")
+    }
 }
