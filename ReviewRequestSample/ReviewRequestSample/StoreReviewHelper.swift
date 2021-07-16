@@ -22,4 +22,17 @@ struct StoreReviewHelper {
         static let lastReviewRequestDate = "lastReviewRequestDate"
     }
     
+    // レビュー依頼候補者に設定
+    static func configure() {
+        // 初回起動時のみ実行する
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.isStoreReviewHelperConfigured) {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isReviewRequestCandidate)
+            print("レビュー候補者に設定")
+            
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isStoreReviewHelperConfigured)
+        } else {
+            print("レビュー依頼初期設定済み")
+        }
+    }
+    
 }
