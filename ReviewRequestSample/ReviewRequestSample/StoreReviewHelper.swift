@@ -35,4 +35,12 @@ struct StoreReviewHelper {
         }
     }
     
+    // アプリを開いた回数を1追加する
+    static func incrementAppOpenCount() {
+        var appOpenCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)
+        appOpenCount += 1
+        UserDefaults.standard.set(appOpenCount, forKey: UserDefaultsKeys.appOpenCount)
+        print("アプリを開いた回数\(appOpenCount)回")
+    }
+    
 }
