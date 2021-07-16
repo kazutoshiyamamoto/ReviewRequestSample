@@ -11,7 +11,6 @@ struct ProcessCompletedView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var selectedRating: Int = 0
-    @State private var isLogSended = false
     private var maximumRating = 5
     private var rankTexts = ["", "不満", "", "", "", "満足", ""]
     
@@ -62,29 +61,8 @@ struct ProcessCompletedView: View {
             Spacer()
         }
         .onAppear(perform: {
-            var count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
-            count += 1
-            UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
-            print("Process completed \(count) time(s)")
-        })
-        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("sceneDidEnterBackground"))) { _ in
-            print("sceneDidEnterBackground")
-            if isLogSended == false {
-                logSend()
-                isLogSended = true
-            }
-        }
-        .onDisappear(perform: {
-            print("onDisappear")
-            if isLogSended == false {
-                logSend()
-                isLogSended = true
             }
         })
-    }
-    
-    private func logSend() {
-        print("評価送信:\(String(describing: selectedRating != 0 ? selectedRating : nil))")
     }
 }
 
