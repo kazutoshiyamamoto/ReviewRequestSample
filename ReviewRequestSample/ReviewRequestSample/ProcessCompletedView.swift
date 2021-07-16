@@ -61,6 +61,8 @@ struct ProcessCompletedView: View {
             Spacer()
         }
         .onAppear(perform: {
+            if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isReviewRequestCandidate) {
+                StoreReviewHelper.incrementProcessCompletedCount()
             }
         })
     }
