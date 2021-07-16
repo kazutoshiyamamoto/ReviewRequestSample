@@ -13,6 +13,7 @@ struct ProcessCompletedView: View {
     @State private var selectedRating: Int = 0
     @State private var isLogSended = false
     private var maximumRating = 5
+    private var rankTexts = ["", "不満", "", "", "", "満足", ""]
     
     var body: some View {
         VStack {
@@ -22,24 +23,27 @@ struct ProcessCompletedView: View {
                 .font(.system(size: 30))
                 .padding()
             
-            HStack(spacing: 30) {
+            HStack(spacing: 25) {
                 ForEach(1 ..< maximumRating + 1) { ratingNumber in
-                    Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
-                        .foregroundColor(Color("ratingIconColor"))
-                        .onTapGesture {
-                            selectedRating = ratingNumber
-                        }
-                        .font(.title)
+                    VStack {
+                        Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
+                            .foregroundColor(Color("ratingIconColor"))
+                            .onTapGesture {
+                                selectedRating = ratingNumber
+                                
+                                //                                print("評価送信:\(String(describing: ratingNumber))")
+                                
+                                // 査定金額で低評価を選択した場合はアプリのストアレビュー候補から外す
+                                if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isReviewRequestCandidate) && (ratingNumber == 1 || ratingNumber == 2) {
+                                    StoreReviewHelper.removeFromCandidate()
+                                }
+                            }
+                            .font(.title2)
+                        
+                        Text(rankTexts[ratingNumber])
+                            .font(.subheadline)
+                    }
                 }
-            }
-            .padding(.bottom, 2)
-            
-            HStack(spacing: 30) {
-                Text("不満")
-                
-                Spacer()
-                
-                Text("満足")
             }
             .frame(width: 300)
             .padding(.bottom, 20)
