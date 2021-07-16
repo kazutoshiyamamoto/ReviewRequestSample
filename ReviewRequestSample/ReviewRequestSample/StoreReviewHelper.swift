@@ -35,12 +35,21 @@ struct StoreReviewHelper {
         }
     }
     
+    // TODO:increment処理の共通化（UserDefaultsを拡張する？やり方調べる）
     // アプリを開いた回数を1追加する
     static func incrementAppOpenCount() {
         var appOpenCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)
         appOpenCount += 1
         UserDefaults.standard.set(appOpenCount, forKey: UserDefaultsKeys.appOpenCount)
         print("アプリを開いた回数\(appOpenCount)回")
+    }
+    
+    // 完了画面を表示した回数を1追加する
+    static func incrementProcessCompletedCount() {
+        var processCompletedCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)
+        processCompletedCount += 1
+        UserDefaults.standard.set(processCompletedCount, forKey: UserDefaultsKeys.processCompletedCount)
+        print("完了画面を表示した回数\(processCompletedCount)回")
     }
     
 }
