@@ -25,11 +25,11 @@ struct StoreReviewHelper {
     // レビュー依頼候補者に設定
     static func configure() {
         // 初回起動時のみ実行する
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.isStoreReviewHelperConfigured) {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isReviewRequestCandidate)
+        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.StoreReviewHelperConfigured) {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.ReviewRequestCandidate)
             print("レビュー候補者に設定")
             
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isStoreReviewHelperConfigured)
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.StoreReviewHelperConfigured)
         } else {
             print("レビュー依頼初期設定済み")
         }
@@ -54,7 +54,7 @@ struct StoreReviewHelper {
     
     // レビュー依頼候補から外す
     static func removeFromCandidate() {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.isReviewRequestCandidate)
+        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.ReviewRequestCandidate)
         
         // レビュー依頼画面表示の判定に使用していた値を破棄
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.appOpenCount)

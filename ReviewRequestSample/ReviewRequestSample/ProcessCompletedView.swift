@@ -33,7 +33,7 @@ struct ProcessCompletedView: View {
                                 //                                print("評価送信:\(String(describing: ratingNumber))")
                                 
                                 // 査定金額で低評価を選択した場合はアプリのストアレビュー候補から外す
-                                if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isReviewRequestCandidate) && (ratingNumber == 1 || ratingNumber == 2) {
+                                if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.ReviewRequestCandidate) && (ratingNumber == 1 || ratingNumber == 2) {
                                     StoreReviewHelper.removeFromCandidate()
                                 }
                             }
@@ -61,7 +61,7 @@ struct ProcessCompletedView: View {
             Spacer()
         }
         .onAppear(perform: {
-            if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isReviewRequestCandidate) {
+            if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.ReviewRequestCandidate) {
                 StoreReviewHelper.incrementProcessCompletedCount()
             }
         })
