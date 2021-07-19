@@ -24,15 +24,9 @@ struct StoreReviewHelper {
     
     // レビュー依頼候補者に設定
     static func configure() {
-        // 初回起動時のみ実行する
-        if !UserDefaults.standard.bool(forKey: UserDefaultsKeys.StoreReviewHelperConfigured) {
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.ReviewRequestCandidate)
-            print("レビュー候補者に設定")
-            
-            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.StoreReviewHelperConfigured)
-        } else {
-            print("レビュー依頼初期設定済み")
-        }
+        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.ReviewRequestCandidate)
+        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.StoreReviewHelperConfigured)
+        print("レビュー候補者に設定")
     }
     
     // TODO:increment処理の共通化（UserDefaultsを拡張する？やり方調べる）
