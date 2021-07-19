@@ -70,7 +70,8 @@ struct StoreReviewHelper {
             print("次回の依頼日\(String(describing: nextReviewRequestDate))")
             print("今日の日付:\(today)")
             
-            return today > nextReviewRequestDate ? true : false
+            let requestJudgment = today > nextReviewRequestDate ? true : false
+            return requestJudgment
         } else {
             let appOpenCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)
             let processCompletedCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)
@@ -78,7 +79,8 @@ struct StoreReviewHelper {
             print("アプリを開いた回数:\(appOpenCount)回")
             print("完了画面を表示した回数:\(processCompletedCount)回")
             
-            return appOpenCount >= 2 && processCompletedCount >= 3 ? true : false
+            let requestJudgment = appOpenCount >= 2 && processCompletedCount >= 3 ? true : false
+            return requestJudgment
         }
     }
     
