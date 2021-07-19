@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import StoreKit
 
 struct InitialView: View {
     
@@ -36,12 +35,6 @@ struct InitialView: View {
                 .padding(.bottom, 40)
             }
             .onAppear(perform: {
-                let count = UserDefaults.standard.integer(forKey: StoreReviewHelper.UserDefaultsKeys.processCompletedCount)
-                if count >= 2 {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                        if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                            SKStoreReviewController.requestReview(in: windowScene)
-                        }
                     }
                 }
             })
