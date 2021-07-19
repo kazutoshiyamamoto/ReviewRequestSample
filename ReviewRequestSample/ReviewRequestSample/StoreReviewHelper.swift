@@ -35,7 +35,7 @@ struct StoreReviewHelper {
         var appOpenCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)
         appOpenCount += 1
         UserDefaults.standard.set(appOpenCount, forKey: UserDefaultsKeys.appOpenCount)
-        print("アプリを開いた回数\(appOpenCount)回")
+        print("アプリを開いた回数:\(appOpenCount)回")
     }
     
     // 完了画面を表示した回数を1追加する
@@ -43,7 +43,7 @@ struct StoreReviewHelper {
         var processCompletedCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)
         processCompletedCount += 1
         UserDefaults.standard.set(processCompletedCount, forKey: UserDefaultsKeys.processCompletedCount)
-        print("完了画面を表示した回数\(processCompletedCount)回")
+        print("完了画面を表示した回数:\(processCompletedCount)回")
     }
     
     // レビュー依頼候補から外す
@@ -54,8 +54,6 @@ struct StoreReviewHelper {
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.appOpenCount)
         UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.processCompletedCount)
         
-        print("レビュー依頼候補から外した")
-        print("起動回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)))回")
-        print("完了画面を表示した回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)))回")
+        print("レビュー依頼候補から外した\n起動回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)))回\n完了画面を表示した回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)))回\n最後にレビュー依頼をした日付:\(String(describing: UserDefaults.standard.object(forKey: UserDefaultsKeys.lastReviewRequestDate)))")
     }
 }
