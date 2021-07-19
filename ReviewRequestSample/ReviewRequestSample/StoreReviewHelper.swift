@@ -11,9 +11,9 @@ struct StoreReviewHelper {
     // StoreReviewHelperで使用するUserDefaultsKeyの一覧
     enum UserDefaultsKeys {
         // 初回設定の完了状況を管理するキー
-        static let StoreReviewHelperConfigured = "StoreReviewHelperConfigured"
+        static let StoreReviewHelperConfigured = "storeReviewHelperConfigured"
         // レビュー依頼対象か管理するキー
-        static let ReviewRequestCandidate = "ReviewRequestCandidate"
+        static let ReviewRequestCandidate = "reviewRequestCandidate"
         // アプリを開いた回数を管理するキー
         static let appOpenCount = "appOpenCount"
         // 完了画面を表示した回数を管理するキー
