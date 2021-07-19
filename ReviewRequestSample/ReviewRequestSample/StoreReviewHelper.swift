@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import StoreKit
 
 struct StoreReviewHelper {
     // StoreReviewHelperで使用するUserDefaultsKeyの一覧
@@ -78,6 +79,12 @@ struct StoreReviewHelper {
             print("完了画面を表示した回数:\(processCompletedCount)回")
             
             return appOpenCount >= 2 && processCompletedCount >= 3 ? true : false
+        }
+    }
+    
+    static func reviewRequest(windowScene: UIWindowScene) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            SKStoreReviewController.requestReview(in: windowScene)
         }
     }
     
