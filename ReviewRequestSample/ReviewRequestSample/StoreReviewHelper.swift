@@ -46,6 +46,13 @@ struct StoreReviewHelper {
         print("完了画面を表示した回数:\(processCompletedCount)回")
     }
     
+    // 最後にレビュー依頼した日付を保存する
+    static func storeLastReviewRequestDate() {
+        let today = Date()
+        UserDefaults.standard.set(today, forKey: UserDefaultsKeys.lastReviewRequestDate)
+        print("最後にレビュー依頼をした日付:\(String(describing: UserDefaults.standard.object(forKey: UserDefaultsKeys.lastReviewRequestDate)!))")
+    }
+    
     // レビュー依頼候補から外す
     static func removeFromCandidate() {
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.ReviewRequestCandidate)
