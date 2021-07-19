@@ -53,6 +53,34 @@ struct StoreReviewHelper {
         print("最後にレビュー依頼をした日付:\(String(describing: UserDefaults.standard.object(forKey: UserDefaultsKeys.lastReviewRequestDate)!))")
     }
     
+    // 前回のレビュー依頼日から1ヶ月が経過しているかどうかを確認
+    // レビュー依頼したことがない場合は、2回以上アプリを開いていて、完了画面を3回以上表示しているかどうかを確認
+    static func shouldReviewRequest() -> Bool {
+        if let lastReviewRequestDate = UserDefaults.standard.object(forKey: StoreReviewHelper.UserDefaultsKeys.lastReviewRequestDate) as? Date {
+            var calendar = Calendar.current
+            calendar.locale = .current
+            calendar.timeZone = .current
+            guard let nextReviewRequestDate = calendar.date(byAdding: .month, value: 1, to: calendar.startOfDay(for: lastReviewRequestDate)) else {
+                return false
+            }
+            
+            let today = calendar.startOfDay(for: Date())
+            
+            print("次回の依頼日\(String(describing: nextReviewRequestDate))")
+            print("今日の日付:\(today)")
+            
+            return today > nextReviewRequestDate ? true : false
+        } else {
+            let appOpenCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)
+            let processCompletedCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)
+            
+            print("アプリを開いた回数:\(appOpenCount)回")
+            print("完了画面を表示した回数:\(processCompletedCount)回")
+            
+            return appOpenCount >= 2 && processCompletedCount >= 3 ? true : false
+        }
+    }
+    
     // レビュー依頼候補から外す
     static func removeFromCandidate() {
         UserDefaults.standard.set(false, forKey: UserDefaultsKeys.ReviewRequestCandidate)
