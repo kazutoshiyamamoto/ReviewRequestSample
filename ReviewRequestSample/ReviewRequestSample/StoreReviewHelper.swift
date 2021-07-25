@@ -65,6 +65,10 @@ struct StoreReviewHelper {
         print("レビュー依頼候補から外した\n起動回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)))回\n完了画面を表示した回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)))回\n最後にレビュー依頼をした日付:\(String(describing: UserDefaults.standard.object(forKey: UserDefaultsKeys.lastReviewRequestDate)))")
     }
     
+    // レビュー依頼条件を満たす状態かどうかを確認するメソッド
+    // レビュー依頼したことがない場合は、2回以上アプリを開いていて、完了画面を3回以上表示しているかどうかを確認している
+    // 初回れビュー表示以降は、前回のレビュー依頼日から中1ヶ月が経過しているかどうかを確認している
+    static func canRequestReview() -> Bool {
         if let lastReviewRequestDate = UserDefaults.standard.object(forKey: StoreReviewHelper.UserDefaultsKeys.lastReviewRequestDate) as? Date {
             var calendar = Calendar.current
             calendar.locale = .current
@@ -72,23 +76,16 @@ struct StoreReviewHelper {
             guard let nextReviewRequestDate = calendar.date(byAdding: .month, value: 1, to: calendar.startOfDay(for: lastReviewRequestDate)) else {
                 return false
             }
+            print("次回の依頼日\(String(describing: nextReviewRequestDate))")
             
             let today = calendar.startOfDay(for: Date())
-            
-            print("次回の依頼日\(String(describing: nextReviewRequestDate))")
-            print("今日の日付:\(today)")
-            
-            let requestJudgment = today > nextReviewRequestDate ? true : false
-            return requestJudgment
+            let isRequestable = today > nextReviewRequestDate ? true : false
+            return isRequestable
         } else {
             let appOpenCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)
             let processCompletedCount = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)
-            
-            print("アプリを開いた回数:\(appOpenCount)回")
-            print("完了画面を表示した回数:\(processCompletedCount)回")
-            
-            let requestJudgment = appOpenCount >= 2 && processCompletedCount >= 3 ? true : false
-            return requestJudgment
+            let isRequestable = appOpenCount >= 2 && processCompletedCount >= 3 ? true : false
+            return isRequestable
         }
     }
     
