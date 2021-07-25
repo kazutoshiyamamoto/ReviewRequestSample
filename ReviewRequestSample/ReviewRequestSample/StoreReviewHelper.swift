@@ -89,8 +89,8 @@ struct StoreReviewHelper {
         }
     }
     
-    static func reviewRequest(windowScene: UIWindowScene) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+    static func requestReview(windowScene: UIWindowScene) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
             SKStoreReviewController.requestReview(in: windowScene)
         }
     }
