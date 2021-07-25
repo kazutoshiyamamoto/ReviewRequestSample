@@ -16,7 +16,6 @@
 		FD1F20B626776E2A00FDE160 /* ReviewRequestSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F20B526776E2A00FDE160 /* ReviewRequestSampleTests.swift */; };
 		FD1F20C126776E2A00FDE160 /* ReviewRequestSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F20C026776E2A00FDE160 /* ReviewRequestSampleUITests.swift */; };
 		FD1F20CF26777C0900FDE160 /* ProcessCompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1F20CE26777C0900FDE160 /* ProcessCompletedView.swift */; };
-		FD28D8D32683638E00859052 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD28D8D22683638E00859052 /* UserDefaultsKeys.swift */; };
 		FD82AD6426A1413900DBA7D0 /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD82AD6326A1413900DBA7D0 /* StoreReviewHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		FD1F20C026776E2A00FDE160 /* ReviewRequestSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRequestSampleUITests.swift; sourceTree = "<group>"; };
 		FD1F20C226776E2A00FDE160 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD1F20CE26777C0900FDE160 /* ProcessCompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessCompletedView.swift; sourceTree = "<group>"; };
-		FD28D8D22683638E00859052 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		FD82AD6326A1413900DBA7D0 /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +107,6 @@
 				FD1F20A026776E2A00FDE160 /* SceneDelegate.swift */,
 				FD1F20A226776E2A00FDE160 /* InitialView.swift */,
 				FD1F20CE26777C0900FDE160 /* ProcessCompletedView.swift */,
-				FD28D8D22683638E00859052 /* UserDefaultsKeys.swift */,
 				FD82AD6326A1413900DBA7D0 /* StoreReviewHelper.swift */,
 				FD1F20A426776E2A00FDE160 /* Assets.xcassets */,
 				FD1F20A926776E2A00FDE160 /* LaunchScreen.storyboard */,
@@ -277,7 +274,6 @@
 			files = (
 				FD1F20CF26777C0900FDE160 /* ProcessCompletedView.swift in Sources */,
 				FD1F209F26776E2A00FDE160 /* AppDelegate.swift in Sources */,
-				FD28D8D32683638E00859052 /* UserDefaultsKeys.swift in Sources */,
 				FD1F20A126776E2A00FDE160 /* SceneDelegate.swift in Sources */,
 				FD1F20A326776E2A00FDE160 /* InitialView.swift in Sources */,
 				FD82AD6426A1413900DBA7D0 /* StoreReviewHelper.swift in Sources */,
