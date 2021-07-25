@@ -52,8 +52,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         
-        if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.ReviewRequestCandidate) {
-            StoreReviewHelper.incrementAppOpenCount()
+        if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isRequestCandidate) {
+            StoreReviewHelper.saveAppOpenCount()
         }
     }
     

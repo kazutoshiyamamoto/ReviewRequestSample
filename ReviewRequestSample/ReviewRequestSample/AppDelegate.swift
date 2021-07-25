@@ -11,9 +11,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // 初回起動時のみ実行
-        if !UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.StoreReviewHelperConfigured) {
+        if !UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isConfigured) {
             StoreReviewHelper.configure()
+            UserDefaults.standard.set(true, forKey: StoreReviewHelper.UserDefaultsKeys.isConfigured)
         }
         
         return true

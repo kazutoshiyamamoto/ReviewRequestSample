@@ -94,17 +94,4 @@ struct StoreReviewHelper {
             SKStoreReviewController.requestReview(in: windowScene)
         }
     }
-    
-    // レビュー依頼候補から外す
-    // 評価1,2をつけた場合に呼ぶ
-    static func removeFromCandidate() {
-        UserDefaults.standard.set(false, forKey: UserDefaultsKeys.ReviewRequestCandidate)
-        
-        // レビュー依頼画面表示の判定に使用していた値を破棄
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.appOpenCount)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.processCompletedCount)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKeys.lastReviewRequestDate)
-        
-        print("レビュー依頼候補から外した\n起動回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenCount)))回\n完了画面を表示した回数:\(String(describing: UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCount)))回\n最後にレビュー依頼をした日付:\(String(describing: UserDefaults.standard.object(forKey: UserDefaultsKeys.lastReviewRequestDate)))")
-    }
 }
