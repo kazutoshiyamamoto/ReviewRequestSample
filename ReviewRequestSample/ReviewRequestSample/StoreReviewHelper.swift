@@ -16,6 +16,11 @@ enum ReviewCandidateState: String {
 
 final class StoreReviewHelper {
     
+    static let shared: StoreReviewHelper = {
+        let dataStore = UserDefaultsDataStore(userDefaults: UserDefaults.standard)
+        let storeReviewHelper = StoreReviewHelper(dataStore: dataStore)
+        return storeReviewHelper
+    }()
     
     var dataStore: DataStoreProtocol
     
