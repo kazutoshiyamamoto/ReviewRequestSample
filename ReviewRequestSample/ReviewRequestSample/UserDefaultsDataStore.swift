@@ -23,3 +23,12 @@ protocol DataStoreProtocol {
     func removeLastReviewRequestDate()
 }
 
+final class UserDefaultsDataStore: DataStoreProtocol {
+    
+    let userDefaults: UserDefaults
+    
+    init(userDefaults: UserDefaults) {
+        self.userDefaults = userDefaults
+    }
+    
+}
