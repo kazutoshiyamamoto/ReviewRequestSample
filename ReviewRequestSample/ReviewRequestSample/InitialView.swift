@@ -40,6 +40,8 @@ struct InitialView: View {
                 .padding(.bottom, 40)
             }
             .onAppear(perform: {
+                viewModel.canRequestReview()
+            })
                     if let windowScene = UIApplication.shared.windows.first?.windowScene {
                     }
                 }
