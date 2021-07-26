@@ -123,7 +123,10 @@ final class StoreReviewHelper {
         }
     }
 
+    func requestReview(windowScene: UIWindowScene) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             SKStoreReviewController.requestReview(in: windowScene)
+            self.dataStore.saveLastReviewRequestDate(date: Date())
         }
     }
 }
