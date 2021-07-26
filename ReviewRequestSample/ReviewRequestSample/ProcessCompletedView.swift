@@ -30,7 +30,9 @@ struct ProcessCompletedView: View {
                             .onTapGesture {
                                 selectedRating = ratingNumber
                                 
-                                // 査定金額で低評価を選択した場合はアプリのストアレビュー候補から外す
+                                // 低評価を選択した場合はアプリのストアレビュー候補から外す
+                                if ratingNumber == 1 || ratingNumber == 2 {
+                                    StoreReviewHelper.shared.removeFromCandidate()
                                 }
                             }
                             .font(.title2)
