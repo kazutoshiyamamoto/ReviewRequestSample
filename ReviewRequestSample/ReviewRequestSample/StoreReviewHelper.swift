@@ -14,8 +14,13 @@ enum ReviewCandidateState: String {
     case notConfigured = "" // 初回起動時（CandidateState未設定）
 }
 
+final class StoreReviewHelper {
     
     
+    var dataStore: DataStoreProtocol
+    
+    init(dataStore: DataStoreProtocol) {
+        self.dataStore = dataStore
     }
     
     }
