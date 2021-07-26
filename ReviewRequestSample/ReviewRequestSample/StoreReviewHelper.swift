@@ -72,6 +72,21 @@ final class StoreReviewHelper {
         }
     }
     
+    func removeFromCandidate() {
+        dataStore.fetchCandidateState() { state in
+            print("取得した状態(removeFromCandidate):\(state)")
+            switch state {
+            case .candidate:
+                dataStore.saveCandidateState(state: .notCandidate)
+                
+                // アプリレビュー依頼画面表示の判定に使用していた値を破棄
+                dataStore.removeAppOpenedCount()
+                dataStore.removeProcessCompletedCount()
+                dataStore.removeLastReviewRequestDate()
+                
+                print("レビュー依頼候補から外した\n起動回数:\(String(describing: dataStore.fetchAppOpenedCount()))回\n完了画面を表示した回数:\(String(describing: dataStore.fetchProcessCompletedCount()))回\n最後にレビュー依頼をした日付:\(String(describing: dataStore.fetchLastReviewRequestDate())))")
+            default:
+                break
             }
         }
     }
