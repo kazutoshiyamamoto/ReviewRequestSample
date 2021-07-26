@@ -56,6 +56,20 @@ final class StoreReviewHelper {
         }
     }
     
+    // 完了画面を表示した回数を更新
+    func updateProcessCompletedCount() {
+        dataStore.fetchCandidateState() { state in
+            print("取得した状態(updateProcessCompletedCount):\(state)")
+            switch state {
+            case .candidate:
+                let processCompletedCount = dataStore.fetchProcessCompletedCount()
+                let updatedProcessCompletedCount = processCompletedCount + 1
+                dataStore.saveProcessCompletedCount(count: updatedProcessCompletedCount)
+                print("完了画面を表示した回数:\(dataStore.fetchProcessCompletedCount())回")
+            default:
+                break
+            }
+        }
     }
     
             }
