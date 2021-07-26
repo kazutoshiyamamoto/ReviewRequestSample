@@ -35,10 +35,7 @@ struct InitialView: View {
                 .padding(.bottom, 40)
             }
             .onAppear(perform: {
-                if UserDefaults.standard.bool(forKey: StoreReviewHelper.UserDefaultsKeys.isRequestCandidate) && StoreReviewHelper.canRequestReview() {
                     if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                        StoreReviewHelper.requestReview(windowScene: windowScene)
-                        StoreReviewHelper.saveLastReviewRequestDate()
                     }
                 }
             })
