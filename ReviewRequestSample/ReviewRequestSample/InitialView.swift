@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct InitialView: View {
+    @ObservedObject private var viewModel: InitialViewModel
+    
+    init(viewModel: InitialViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -45,6 +50,6 @@ struct InitialView: View {
 
 struct InitialView_Previews: PreviewProvider {
     static var previews: some View {
-        InitialView()
+        InitialView(viewModel: InitialViewModel())
     }
 }
