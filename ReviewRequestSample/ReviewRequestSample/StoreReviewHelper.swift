@@ -40,6 +40,20 @@ final class StoreReviewHelper {
         }
     }
     
+    // アプリを開いた回数を更新
+    func updateAppOpenCount() {
+        dataStore.fetchCandidateState() { state in
+            print("取得した状態(updateAppOpenCount):\(state)")
+            switch state {
+            case .candidate:
+                let appOpenedCount = dataStore.fetchAppOpenedCount()
+                let updatedAppOpenCount = appOpenedCount + 1
+                dataStore.saveAppOpenedCount(count: updatedAppOpenCount)
+                print("アプリを開いた回数:\(dataStore.fetchAppOpenedCount())回")
+            default:
+                break
+            }
+        }
     }
     
     }
