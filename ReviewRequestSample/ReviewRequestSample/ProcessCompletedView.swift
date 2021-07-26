@@ -57,6 +57,7 @@ struct ProcessCompletedView: View {
             Spacer()
         }
         .onAppear(perform: {
+            StoreReviewHelper.shared.updateProcessCompletedCount()
         })
     }
 }
