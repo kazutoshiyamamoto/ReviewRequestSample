@@ -91,6 +91,38 @@ final class StoreReviewHelper {
         }
     }
     
+    // アプリレビュー依頼条件を満たすか確認
+    func canRequestReview(completion: (Bool) -> Void) {
+        dataStore.fetchCandidateState() { state in
+            print("取得した状態(canRequestReview):\(state)")
+            switch state {
+            case .candidate:
+                if let lastReviewRequestDate = dataStore.fetchLastReviewRequestDate() as? Date {
+                    // 前回のレビュー依頼日から中1ヶ月が経過しているかどうかを確認
+                    var calendar = Calendar.current
+                    calendar.locale = .current
+                    calendar.timeZone = .current
+                    guard let nextReviewRequestDate = calendar.date(byAdding: .month, value: 1, to: calendar.startOfDay(for: lastReviewRequestDate)) else {
+                        return
+                    }
+                    print("次回の依頼日\(String(describing: nextReviewRequestDate))")
+                    
+                    let today = calendar.startOfDay(for: Date())
+                    let isRequestable = today > nextReviewRequestDate ? true : false
+                    completion(isRequestable)
+                } else {
+                    // 2回以上アプリを開いていて、完了画面を3回以上表示しているかどうかを確認
+                    let appOpenedCount = dataStore.fetchAppOpenedCount()
+                    let processCompletedCount = dataStore.fetchProcessCompletedCount()
+                    let isRequestable = appOpenedCount >= 2 && processCompletedCount >= 3 ? true : false
+                    completion(isRequestable)
+                }
+            default:
+                completion(false)
+            }
+        }
+    }
+
             SKStoreReviewController.requestReview(in: windowScene)
         }
     }
