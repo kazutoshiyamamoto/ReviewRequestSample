@@ -42,10 +42,13 @@ struct InitialView: View {
             .onAppear(perform: {
                 viewModel.canRequestReview()
             })
+            .onChange(of: viewModel.isReviewRequestable) { isReviewRequestable in
+                if isReviewRequestable {
                     if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                        StoreReviewHelper.shared.requestReview(windowScene: windowScene)
                     }
                 }
-            })
+            }
         }
     }
 }
