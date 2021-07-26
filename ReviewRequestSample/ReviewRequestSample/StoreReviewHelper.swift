@@ -28,6 +28,16 @@ final class StoreReviewHelper {
         self.dataStore = dataStore
     }
     
+    // 初回起動時にアプリレビュー依頼候補者に設定
+    func configure() {
+        dataStore.fetchCandidateState() { state in
+            switch state {
+            case .notConfigured:
+                dataStore.saveCandidateState(state: ReviewCandidateState.candidate)
+            default:
+                break
+            }
+        }
     }
     
     }
