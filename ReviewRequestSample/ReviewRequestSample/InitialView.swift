@@ -34,8 +34,8 @@ struct InitialView: View {
                 }
                 
                 Button("Reset Sample") {
-                    UserDefaults.standard.set(0, forKey: StoreReviewHelper.UserDefaultsKeys.processCompletedCount)
-                    print("Count have been reset")
+//                    UserDefaults.standard.set(0, forKey: StoreReviewHelper.UserDefaultsKeys.processCompletedCount)
+//                    print("Count have been reset")
                 }
                 .font(.system(size: 18))
                 .padding(.bottom, 40)
