@@ -91,7 +91,7 @@ final class StoreReviewHelper {
         }
     }
     
-    // アプリレビュー依頼条件を満たすか確認
+    // アプリレビュー依頼が可能か（表示条件を満たすか）確認
     func canRequestReview(completion: (Bool) -> Void) {
         dataStore.fetchCandidateState() { state in
             print("取得した状態(canRequestReview):\(state)")
