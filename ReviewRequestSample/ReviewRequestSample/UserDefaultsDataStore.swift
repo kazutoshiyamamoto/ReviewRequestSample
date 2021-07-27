@@ -36,11 +36,11 @@ final class UserDefaultsDataStore: DataStoreProtocol {
         let candidateState = userDefaults.string(forKey: "candidateState") ?? ""
         switch candidateState {
         case "candidate":
-            completion(ReviewRequestState.candidate)
+            completion(ReviewRequestState.target)
         case "notCandidate":
-            completion(ReviewRequestState.notCandidate)
+            completion(ReviewRequestState.notTarget)
         default:
-            completion(ReviewRequestState.notConfigured)
+            completion(ReviewRequestState.unknown)
         }
     }
     
@@ -58,10 +58,10 @@ final class UserDefaultsDataStore: DataStoreProtocol {
     
     func saveCandidateState(state: ReviewRequestState) {
         switch state {
-        case .candidate:
+        case .target:
             print("保存する値:\(state.rawValue)")
             userDefaults.set(state.rawValue, forKey: "candidateState")
-        case .notCandidate:
+        case .notTarget:
             print("保存する値:\(state.rawValue)")
             userDefaults.set(state.rawValue, forKey: "candidateState")
         default:
