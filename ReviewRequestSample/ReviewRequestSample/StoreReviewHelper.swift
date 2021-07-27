@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ReviewCandidateState: String {
+enum ReviewRequestState: String {
     case candidate = "candidate" // アプリレビュー依頼候補者
     case notCandidate = "notCandidate" // アプリレビュー依頼対象外
     case notConfigured = "" // 初回起動時（CandidateState未設定）
@@ -33,7 +33,7 @@ final class StoreReviewHelper {
         dataStore.fetchCandidateState() { state in
             switch state {
             case .notConfigured:
-                dataStore.saveCandidateState(state: ReviewCandidateState.candidate)
+                dataStore.saveCandidateState(state: ReviewRequestState.candidate)
             default:
                 break
             }

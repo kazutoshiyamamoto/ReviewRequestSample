@@ -8,12 +8,12 @@
 import Foundation
 
 protocol DataStoreProtocol {
-    func fetchCandidateState(completion: (ReviewCandidateState) -> Void)
+    func fetchCandidateState(completion: (ReviewRequestState) -> Void)
     func fetchAppOpenedCount() -> Int
     func fetchProcessCompletedCount() -> Int
     func fetchLastReviewRequestDate() -> Any?
     
-    func saveCandidateState(state: ReviewCandidateState)
+    func saveCandidateState(state: ReviewRequestState)
     func saveAppOpenedCount(count: Int)
     func saveProcessCompletedCount(count: Int)
     func saveLastReviewRequestDate(date: Date)
@@ -32,15 +32,15 @@ final class UserDefaultsDataStore: DataStoreProtocol {
     }
     
     // MARK: アプリレビュー依頼の判定に使用する情報の管理
-    func fetchCandidateState(completion: (ReviewCandidateState) -> Void) {
+    func fetchCandidateState(completion: (ReviewRequestState) -> Void) {
         let candidateState = userDefaults.string(forKey: "candidateState") ?? ""
         switch candidateState {
         case "candidate":
-            completion(ReviewCandidateState.candidate)
+            completion(ReviewRequestState.candidate)
         case "notCandidate":
-            completion(ReviewCandidateState.notCandidate)
+            completion(ReviewRequestState.notCandidate)
         default:
-            completion(ReviewCandidateState.notConfigured)
+            completion(ReviewRequestState.notConfigured)
         }
     }
     
@@ -56,7 +56,7 @@ final class UserDefaultsDataStore: DataStoreProtocol {
         return userDefaults.object(forKey: "lastReviewRequestDate")
     }
     
-    func saveCandidateState(state: ReviewCandidateState) {
+    func saveCandidateState(state: ReviewRequestState) {
         switch state {
         case .candidate:
             print("保存する値:\(state.rawValue)")
