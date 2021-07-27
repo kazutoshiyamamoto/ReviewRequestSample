@@ -72,9 +72,9 @@ final class StoreReviewHelper {
         }
     }
     
-    func removeFromCandidate() {
+    func removeFromTarget() {
         dataStore.fetchReviewRequestState() { state in
-            print("取得した状態(removeFromCandidate):\(state)")
+            print("取得した状態(removeFromTarget):\(state)")
             switch state {
             case .target:
                 dataStore.saveReviewRequestState(state: .notTarget)
