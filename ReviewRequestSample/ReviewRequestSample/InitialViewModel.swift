@@ -7,7 +7,7 @@
 
 import Foundation
 
-class InitialViewModel: ObservableObject {
+final class InitialViewModel: ObservableObject {
     @Published var isReviewRequestable = false
     
     func canRequestReview() {
