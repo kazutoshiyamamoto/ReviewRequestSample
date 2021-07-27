@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct InitialView: View {
     @ObservedObject private var viewModel: InitialViewModel
@@ -45,7 +46,10 @@ struct InitialView: View {
             .onChange(of: viewModel.isReviewRequestable) { isReviewRequestable in
                 if isReviewRequestable {
                     if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                        StoreReviewHelper.shared.requestReview(windowScene: windowScene)
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                            SKStoreReviewController.requestReview(in: windowScene)
+                            StoreReviewHelper.shared.saveLastReviewRequestDate()
+                        }
                     }
                 }
             }
