@@ -13,6 +13,7 @@ enum ReviewCandidateState: String {
     case notConfigured = "" // 初回起動時（CandidateState未設定）
 }
 
+// アプリレビュー依頼のタイミングを補助するクラス
 final class StoreReviewHelper {
     
     static let shared: StoreReviewHelper = {
