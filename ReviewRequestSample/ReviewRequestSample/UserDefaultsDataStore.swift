@@ -8,6 +8,7 @@
 import Foundation
 
 protocol DataStoreProtocol {
+    // MARK: アプリレビュー依頼の判定に使用
     func fetchReviewRequestState(completion: (ReviewRequestState) -> Void)
     func fetchAppOpenedCount() -> Int
     func fetchProcessCompletedCount() -> Int
