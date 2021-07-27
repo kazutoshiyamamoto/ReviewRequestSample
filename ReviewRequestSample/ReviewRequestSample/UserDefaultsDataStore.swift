@@ -8,12 +8,12 @@
 import Foundation
 
 protocol DataStoreProtocol {
-    func fetchCandidateState(completion: (ReviewRequestState) -> Void)
+    func fetchReviewRequestState(completion: (ReviewRequestState) -> Void)
     func fetchAppOpenedCount() -> Int
     func fetchProcessCompletedCount() -> Int
     func fetchLastReviewRequestDate() -> Any?
     
-    func saveCandidateState(state: ReviewRequestState)
+    func saveReviewRequestState(state: ReviewRequestState)
     func saveAppOpenedCount(count: Int)
     func saveProcessCompletedCount(count: Int)
     func saveLastReviewRequestDate(date: Date)
@@ -32,12 +32,12 @@ final class UserDefaultsDataStore: DataStoreProtocol {
     }
     
     // MARK: アプリレビュー依頼の判定に使用する情報の管理
-    func fetchCandidateState(completion: (ReviewRequestState) -> Void) {
-        let candidateState = userDefaults.string(forKey: "candidateState") ?? ""
-        switch candidateState {
-        case "candidate":
+    func fetchReviewRequestState(completion: (ReviewRequestState) -> Void) {
+        let reviewRequestState = userDefaults.string(forKey: "reviewRequestState") ?? ""
+        switch reviewRequestState {
+        case "target":
             completion(ReviewRequestState.target)
-        case "notCandidate":
+        case "notTarget":
             completion(ReviewRequestState.notTarget)
         default:
             completion(ReviewRequestState.unknown)
@@ -56,14 +56,14 @@ final class UserDefaultsDataStore: DataStoreProtocol {
         return userDefaults.object(forKey: "lastReviewRequestDate")
     }
     
-    func saveCandidateState(state: ReviewRequestState) {
+    func saveReviewRequestState(state: ReviewRequestState) {
         switch state {
         case .target:
             print("保存する値:\(state.rawValue)")
-            userDefaults.set(state.rawValue, forKey: "candidateState")
+            userDefaults.set(state.rawValue, forKey: "reviewRequestState")
         case .notTarget:
             print("保存する値:\(state.rawValue)")
-            userDefaults.set(state.rawValue, forKey: "candidateState")
+            userDefaults.set(state.rawValue, forKey: "reviewRequestState")
         default:
             break
         }

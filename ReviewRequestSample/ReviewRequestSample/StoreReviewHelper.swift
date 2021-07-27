@@ -30,10 +30,10 @@ final class StoreReviewHelper {
     
     // 初回起動時にアプリレビュー依頼候補者に設定
     func configure() {
-        dataStore.fetchCandidateState() { state in
+        dataStore.fetchReviewRequestState() { state in
             switch state {
             case .unknown:
-                dataStore.saveCandidateState(state: ReviewRequestState.target)
+                dataStore.saveReviewRequestState(state: ReviewRequestState.target)
             default:
                 break
             }
@@ -42,7 +42,7 @@ final class StoreReviewHelper {
     
     // アプリを開いた回数を更新
     func updateAppOpenCount() {
-        dataStore.fetchCandidateState() { state in
+        dataStore.fetchReviewRequestState() { state in
             print("取得した状態(updateAppOpenCount):\(state)")
             switch state {
             case .target:
@@ -58,7 +58,7 @@ final class StoreReviewHelper {
     
     // 完了画面を表示した回数を更新
     func updateProcessCompletedCount() {
-        dataStore.fetchCandidateState() { state in
+        dataStore.fetchReviewRequestState() { state in
             print("取得した状態(updateProcessCompletedCount):\(state)")
             switch state {
             case .target:
@@ -73,11 +73,11 @@ final class StoreReviewHelper {
     }
     
     func removeFromCandidate() {
-        dataStore.fetchCandidateState() { state in
+        dataStore.fetchReviewRequestState() { state in
             print("取得した状態(removeFromCandidate):\(state)")
             switch state {
             case .target:
-                dataStore.saveCandidateState(state: .notTarget)
+                dataStore.saveReviewRequestState(state: .notTarget)
                 
                 // アプリレビュー依頼画面表示の判定に使用していた値を破棄
                 dataStore.removeAppOpenedCount()
@@ -93,7 +93,7 @@ final class StoreReviewHelper {
     
     // アプリレビュー依頼が可能か（表示条件を満たすか）確認
     func canRequestReview(completion: (Bool) -> Void) {
-        dataStore.fetchCandidateState() { state in
+        dataStore.fetchReviewRequestState() { state in
             print("取得した状態(canRequestReview):\(state)")
             switch state {
             case .target:
