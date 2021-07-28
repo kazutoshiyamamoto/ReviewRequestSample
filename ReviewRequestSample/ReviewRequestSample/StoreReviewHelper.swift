@@ -41,14 +41,14 @@ final class StoreReviewHelper {
     }
     
     // アプリを開いた回数を更新
-    func updateAppOpenCount() {
+    func updateAppOpenedCount() {
         dataStore.fetchReviewRequestState() { state in
             print("取得した状態(updateAppOpenCount):\(state)")
             switch state {
             case .target:
                 let appOpenedCount = dataStore.fetchAppOpenedCount()
-                let updatedAppOpenCount = appOpenedCount + 1
-                dataStore.saveAppOpenedCount(count: updatedAppOpenCount)
+                let updatedAppOpenedCount = appOpenedCount + 1
+                dataStore.saveAppOpenedCount(count: updatedAppOpenedCount)
                 print("アプリを開いた回数:\(dataStore.fetchAppOpenedCount())回")
             default:
                 break
