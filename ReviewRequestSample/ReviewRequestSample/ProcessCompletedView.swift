@@ -32,7 +32,7 @@ struct ProcessCompletedView: View {
                                 
                                 // 低評価を選択した場合はアプリのストアレビュー依頼対象から外す
                                 if ratingNumber <= 2 {
-                                    StoreReviewHelper.shared.removeFromTarget()
+                                    StoreReviewHelper.shared.removeFromCandidate()
                                 }
                             }
                             .font(.title2)
