@@ -8,12 +8,12 @@
 import Foundation
 
 enum ReviewRequestState: String {
-    case target = "target" // アプリレビュー依頼対象
-    case notTarget = "notTarget" // アプリレビュー依頼対象外
+    case candidate = "candidate" // アプリレビュー依頼対象
+    case notCandidate = "notCandidate" // アプリレビュー依頼対象外
     case unknown = "" // 初回起動時
 }
 
-// アプリレビュー依頼のタイミングを補助するクラス
+// アプリレビュー依頼表示のタイミングに関わる処理を実装するクラス
 final class StoreReviewHelper {
     
     static let shared: StoreReviewHelper = {
@@ -33,7 +33,7 @@ final class StoreReviewHelper {
         dataStore.fetchReviewRequestState() { state in
             switch state {
             case .unknown:
-                dataStore.saveReviewRequestState(state: ReviewRequestState.target)
+                dataStore.saveReviewRequestState(state: ReviewRequestState.candidate)
             default:
                 break
             }
@@ -45,7 +45,7 @@ final class StoreReviewHelper {
         dataStore.fetchReviewRequestState() { state in
             print("取得した状態(updateAppOpenCount):\(state)")
             switch state {
-            case .target:
+            case .candidate:
                 let appOpenedCount = dataStore.fetchAppOpenedCount()
                 let updatedAppOpenedCount = appOpenedCount + 1
                 dataStore.saveAppOpenedCount(count: updatedAppOpenedCount)
@@ -61,7 +61,7 @@ final class StoreReviewHelper {
         dataStore.fetchReviewRequestState() { state in
             print("取得した状態(updateProcessCompletedCount):\(state)")
             switch state {
-            case .target:
+            case .candidate:
                 let processCompletedCount = dataStore.fetchProcessCompletedCount()
                 let updatedProcessCompletedCount = processCompletedCount + 1
                 dataStore.saveProcessCompletedCount(count: updatedProcessCompletedCount)
@@ -74,10 +74,10 @@ final class StoreReviewHelper {
     
     func removeFromTarget() {
         dataStore.fetchReviewRequestState() { state in
-            print("取得した状態(removeFromTarget):\(state)")
+            print("取得した状態(removeFromCandidate):\(state)")
             switch state {
-            case .target:
-                dataStore.saveReviewRequestState(state: .notTarget)
+            case .candidate:
+                dataStore.saveReviewRequestState(state: .notCandidate)
                 
                 // アプリレビュー依頼画面表示の判定に使用していた値を破棄
                 dataStore.removeAppOpenedCount()
@@ -96,7 +96,7 @@ final class StoreReviewHelper {
         dataStore.fetchReviewRequestState() { state in
             print("取得した状態(canRequestReview):\(state)")
             switch state {
-            case .target:
+            case .candidate:
                 if let lastReviewRequestDate = dataStore.fetchLastReviewRequestDate() as? Date {
                     // 前回のレビュー依頼日から中1ヶ月が経過しているかどうかを確認
                     var calendar = Calendar.current
