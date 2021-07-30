@@ -33,7 +33,14 @@ final class StoreReviewHelper {
         dataStore.fetchReviewRequestState() { state in
             switch state {
             case .unknown:
-                dataStore.saveReviewRequestState(state: ReviewRequestState.candidate)
+                dataStore.saveReviewRequestState(state: .candidate) { result in
+                    switch result {
+                    case .success(let state):
+                        print("保存した値:\(state.rawValue)")
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             default:
                 break
             }
@@ -77,7 +84,14 @@ final class StoreReviewHelper {
             print("取得した状態(removeFromCandidate):\(state)")
             switch state {
             case .candidate:
-                dataStore.saveReviewRequestState(state: .notCandidate)
+                dataStore.saveReviewRequestState(state: .notCandidate) { result in
+                    switch result {
+                    case .success(let state):
+                        print("保存した値:\(state.rawValue)")
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
                 
                 // アプリレビュー依頼画面表示の判定に使用していた値を破棄
                 dataStore.removeAppOpenedCount()
