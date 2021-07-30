@@ -97,7 +97,7 @@ final class StoreReviewHelper {
             print("取得した状態(canRequestReview):\(state)")
             switch state {
             case .candidate:
-                if let lastReviewRequestDate = dataStore.fetchLastReviewRequestDate() as? Date {
+                if let lastReviewRequestDate = dataStore.fetchLastReviewRequestDate() {
                     // 前回のレビュー依頼日から中1ヶ月が経過しているかどうかを確認
                     var calendar = Calendar.current
                     calendar.locale = .current

@@ -12,7 +12,7 @@ protocol DataStoreProtocol {
     func fetchReviewRequestState(completion: (ReviewRequestState) -> Void)
     func fetchAppOpenedCount() -> Int
     func fetchProcessCompletedCount() -> Int
-    func fetchLastReviewRequestDate() -> Any?
+    func fetchLastReviewRequestDate() -> Date?
     
     func saveReviewRequestState(state: ReviewRequestState)
     func saveAppOpenedCount(count: Int)
@@ -53,8 +53,8 @@ final class UserDefaultsDataStore: DataStoreProtocol {
         return userDefaults.integer(forKey: "processCompletedCount")
     }
     
-    func fetchLastReviewRequestDate() -> Any? {
-        return userDefaults.object(forKey: "lastReviewRequestDate")
+    func fetchLastReviewRequestDate() -> Date? {
+        return userDefaults.object(forKey: "lastReviewRequestDate") as? Date
     }
     
     func saveReviewRequestState(state: ReviewRequestState) {
