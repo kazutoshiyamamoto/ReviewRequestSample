@@ -14,7 +14,7 @@ protocol DataStoreProtocol {
     func fetchProcessCompletedCount() -> Int
     func fetchLastReviewRequestDate() -> Date?
     
-    func saveReviewRequestState(state: ReviewRequestState)
+    func saveReviewRequestState(state: ReviewRequestState, completion: (Result<ReviewRequestState, Error>) -> Void)
     func saveAppOpenedCount(count: Int)
     func saveProcessCompletedCount(count: Int)
     func saveLastReviewRequestDate(date: Date)
@@ -57,14 +57,14 @@ final class UserDefaultsDataStore: DataStoreProtocol {
         return userDefaults.object(forKey: "lastReviewRequestDate") as? Date
     }
     
-    func saveReviewRequestState(state: ReviewRequestState) {
+    func saveReviewRequestState(state: ReviewRequestState, completion: (Result<ReviewRequestState, Error>) -> Void) {
         switch state {
         case .candidate:
-            print("保存する値:\(state.rawValue)")
-            userDefaults.set(state.rawValue, forKey: "reviewRequestState")
+            self.userDefaults.set(state.rawValue, forKey: "reviewRequestState")
+            completion(.success(state))
         case .notCandidate:
-            print("保存する値:\(state.rawValue)")
             userDefaults.set(state.rawValue, forKey: "reviewRequestState")
+            completion(.success(state))
         default:
             break
         }
