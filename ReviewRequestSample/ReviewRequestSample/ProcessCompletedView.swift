@@ -14,50 +14,67 @@ struct ProcessCompletedView: View {
     private var maximumRating = 5
     private var rankTexts = ["", "Bad", "", "", "", "Good", ""]
     
+    @State private var isPresented = false
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Text("Process Completed")
-                .font(.system(size: 30))
-                .padding()
-            
-            HStack(spacing: 25) {
-                ForEach(1 ..< maximumRating + 1) { ratingNumber in
-                    VStack {
-                        Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
-                            .foregroundColor(Color("ratingIconColor"))
-                            .onTapGesture {
-                                selectedRating = ratingNumber
-                                
-                                // 低評価を選択した場合はアプリのストアレビュー依頼対象から外す
-                                if ratingNumber <= 2 {
-                                    StoreReviewHelper.shared.removeFromCandidate()
+        ZStack {
+            VStack {
+                Spacer()
+                
+                Text("Process Completed")
+                    .font(.system(size: 30))
+                    .padding()
+                
+                HStack(spacing: 25) {
+                    ForEach(1 ..< maximumRating + 1) { ratingNumber in
+                        VStack {
+                            Image(systemName: ratingNumber > selectedRating ? "star" : "star.fill")
+                                .foregroundColor(Color("ratingIconColor"))
+                                .onTapGesture {
+                                    selectedRating = ratingNumber
+                                    
+                                    // 低評価を選択した場合はアプリのストアレビュー依頼対象から外す
+                                    if ratingNumber <= 2 {
+                                        StoreReviewHelper.shared.removeFromCandidate()
+                                    }
+                                    
+                                    // ポップアップ表示（非表示は自動で行う）
+                                    withAnimation(.easeIn(duration: 0.2)) {
+                                        isPresented = true
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                        withAnimation(.easeOut(duration: 0.1)) {
+                                            isPresented = false
+                                        }
+                                    }
                                 }
-                            }
-                            .font(.title2)
-                        
-                        Text(rankTexts[ratingNumber])
-                            .font(.subheadline)
+                                .font(.title2)
+                            
+                            Text(rankTexts[ratingNumber])
+                                .font(.subheadline)
+                        }
                     }
                 }
+                .frame(width: 300)
+                .padding(.bottom, 20)
+                
+                if let linkURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
+                    Link("Link", destination: linkURL)
+                        .font(.system(size: 18))
+                        .padding(.bottom, 20)
+                }
+                
+                Button("Start Over") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .font(.system(size: 18))
+                
+                Spacer()
             }
-            .frame(width: 300)
-            .padding(.bottom, 20)
             
-            if let linkURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
-                Link("Link", destination: linkURL)
-                    .font(.system(size: 18))
-                    .padding(.bottom, 20)
+            if isPresented {
+                OverLayView(isPresented: $isPresented)
             }
-            
-            Button("Start Over") {
-                presentationMode.wrappedValue.dismiss()
-            }
-            .font(.system(size: 18))
-            
-            Spacer()
         }
         .onAppear(perform: {
             StoreReviewHelper.shared.updateProcessCompletedCount()
