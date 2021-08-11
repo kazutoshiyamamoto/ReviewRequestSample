@@ -12,7 +12,8 @@ struct ProcessCompletedView: View {
     
     @State private var selectedRating: Int = 0
     private var maximumRating = 5
-    private var rankTexts = ["", "不満", "", "", "", "満足", ""]
+    private var rankTexts = ["", "Bad", "", "", "", "Good", ""]
+    
     
     var body: some View {
         VStack {
