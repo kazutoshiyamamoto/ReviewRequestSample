@@ -65,6 +65,18 @@ struct ProcessCompletedView: View {
     }
 }
 
+struct OverLayView: View {
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        Text("Submitted!")
+            .frame(width: 200, height: 50)
+            .foregroundColor(.black)
+            .background(Color(red: 0.9, green: 0.9, blue: 0.9, opacity: 0.9))
+            .cornerRadius(10)
+    }
+}
+
 struct ProcessCompletedView_Previews: PreviewProvider {
     static var previews: some View {
         ProcessCompletedView()
