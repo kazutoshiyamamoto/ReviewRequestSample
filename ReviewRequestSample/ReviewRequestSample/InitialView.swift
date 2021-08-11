@@ -23,6 +23,7 @@ struct InitialView: View {
                 NavigationLink(destination: ProcessCompletedView()) {
                     Text("Start Process")
                         .font(.system(size: 30))
+                        .padding()
                 }
                 
                 if let writeReviewURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
@@ -30,6 +31,7 @@ struct InitialView: View {
                         .font(.system(size: 18))
                 }
                 
+                Spacer()
             }
             .onAppear(perform: {
                 viewModel.canRequestReview()
