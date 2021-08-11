@@ -25,20 +25,11 @@ struct InitialView: View {
                         .font(.system(size: 30))
                 }
                 
-                Spacer()
-                
                 if let writeReviewURL = URL(string: "https://apps.apple.com/app/idXXXXXXXXXX?action=write-review") {
                     Link("Write a Review", destination: writeReviewURL)
                         .font(.system(size: 18))
-                        .padding()
                 }
                 
-                Button("Reset Sample") {
-//                    UserDefaults.standard.set(0, forKey: StoreReviewHelper.UserDefaultsKeys.processCompletedCount)
-//                    print("Count have been reset")
-                }
-                .font(.system(size: 18))
-                .padding(.bottom, 40)
             }
             .onAppear(perform: {
                 viewModel.canRequestReview()
